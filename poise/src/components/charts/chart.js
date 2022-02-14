@@ -1,31 +1,41 @@
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import {
-  ArgumentAxis,
-  ValueAxis,
+  
   Chart,
-  LineSeries,
+  PieSeries,
+  Title
 } from '@devexpress/dx-react-chart-material-ui';
+import { Animation } from '@devexpress/dx-react-chart';
 
 const data = [
-    { argument: 1, value: 10 },
-    { argument: 2, value: 20 },
-    { argument: 3, value: 30 },
-  ];
+  { region: 'Asia', val: 4119626293 },
+  { region: 'Africa', val: 1012956064 },
+  { region: 'Northern America', val: 344124520 },
+  { region: 'Latin America and the Caribbean', val: 590946440 },
+  { region: 'Europe', val: 727082222 },
+  { region: 'Oceania', val: 35104756 },
+];
 
-function CreateChart({lable}){
+function Charts({lable}){
     return  <Paper>
     <Chart
       data={data}
     >
-      <ArgumentAxis />
-      <ValueAxis />
-      <LineSeries valueField="value" argumentField="argument" />
+      <PieSeries
+        valueField="val"
+        argumentField="region"
+        innerRadius={0.6}
+      />
+      <Title
+        text="Continents and Regions"
+      />
+      <Animation />
     </Chart>
   </Paper>
 }
 
-export default CreateChart;
-  
+export default Charts;
+
  
   

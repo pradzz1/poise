@@ -1,8 +1,17 @@
-import React from 'react';
-import './button.css'
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
-function Button({lable}){
-    return <div data-testid="Button" className='button-style'>{lable}</div>
+export default function ColorButtons({lable}) {
+  return (
+    <Stack direction="row" spacing={2}>
+      <Button color="secondary">{lable}</Button>
+      <Button variant="contained" color="success">
+        {lable}
+      </Button>
+      <Button variant="outlined" color="error">
+        {lable}
+      </Button>
+    </Stack>
+  );
 }
-
-export default Button;
