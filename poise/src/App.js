@@ -1,25 +1,35 @@
-import './App.css';
 import React from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 import './App.css';
-//import axios from 'axios';
-import Navigation from './components/navigation/navigation';
-
+import Dashboard from './routes/dashboard';
+import Preferences from './routes/preferences';
+import Login from './routes/login';
+import useToken from './auth/auth'
 
 function App() {
-  /*const data = {
-    "description" : "superuser"
-    };
-  const addRoles = function(){
-    console.log("here");
-    axios.post('http://localhost:8080/roles' , data ).then((response)=>{
-          console.log(response);
-    })
-  }*/
+
+  const { token, setToken } = useToken();
+
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
+
   return (
-    <div className="App">
-      
-    <p>lear react</p>
-    <Navigation></Navigation>
+    <div className="wrapper">
+      <h1>Dummy React Application</h1>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="preferences/*" element={<Preferences />} />
+      </Routes>
+    </BrowserRouter>
+
     </div>
   );
 }
